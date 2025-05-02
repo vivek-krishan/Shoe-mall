@@ -11,6 +11,8 @@ import About from "./pages/about/About";
 import useProductsStore from "./utility/Stores/AllProductsStore";
 import { AnimatePresence } from "framer-motion";
 import Authentication from "./pages/authentication/Authentication.index";
+import LogIn from "./pages/authentication/Login";
+import Register from "./pages/authentication/Register";
 
 const App = () => {
   const FetchAllProduct = useProductsStore((state) => state.fetchProducts);
@@ -33,7 +35,9 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/search/:input" element={<SearchPage />} />
-          <Route path="/authentication" element={<Authentication />} />
+          <Route path="/login" element={<LogIn />} />
+          <Route path="/register" element={<Register />} />
+
         </Routes>
       </AnimatePresence>
     );

@@ -23,9 +23,9 @@ const Authentication = () => {
           <div className="w-1/2 flex justify-center items-center">
             <LogIn />
           </div>
-          <div className="w-1/2 flex justify-center items-center">
+          {/* <div className="w-1/2 flex justify-center items-center">
             <Register />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

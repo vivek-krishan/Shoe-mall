@@ -6,7 +6,7 @@ const useProductsStore = create((set) => ({
   fetchProducts: async () => {
     const response = await FetchData();
     if (!response) return alert("Error fetching products");
-    set({ products: response?.data?.items });
+    set({ products: response?.items });
   },
 }));
 

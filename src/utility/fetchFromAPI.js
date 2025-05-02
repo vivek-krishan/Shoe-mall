@@ -1,7 +1,7 @@
 import axios from "axios";
 import { parseErrorMessage } from "./ErrorMessageParser";
+import { productData } from "../assets/JSON/Damo_Data_Set_updated";
 
- 
 
 // export const FetchData = async (url, method, data) => {
 //   const Base_URL = `${DomainUrl}/api/v1`;
@@ -32,9 +32,11 @@ import { parseErrorMessage } from "./ErrorMessageParser";
 
 export const FetchData = async () => {
   try {
-    const response = await axios.get(`${process.env.SERVER}`);
-    return response;
+    // const response = await axios.get(process.env.SERVER);
+    // return response;
+    return productData;
   } catch (error) {
+    console.log("Fuck you, error");
     console.error(error);
     // alert(parseErrorMessage(error));
   }

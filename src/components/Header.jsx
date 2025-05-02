@@ -27,7 +27,7 @@ const Header = () => {
   };
 
   const HandelRegister = () => {
-    navigate(`/authentication`);
+    navigate(`/login`);
   };
 
   const HandelLogOut = async () => {

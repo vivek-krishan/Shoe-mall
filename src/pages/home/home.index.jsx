@@ -36,10 +36,10 @@ function Home() {
 
         <div className="ProductList  flex  justify-evenly items-center">
           <div className="relative">
-            <ProductCard product={allProducts[40]} index={40} size="large" />
+            <ProductCard product={allProducts?.[12]} index={12} size="large" />
           </div>
           <div className="w-[70vw]">
-            <ProductSlider products={allProducts.slice(0, 14)} />
+            <ProductSlider products={allProducts?.slice(0, 14)} />
           </div>
         </div>
       </div>
@@ -58,7 +58,7 @@ function Home() {
         <div className="Some-Products w-[85vw] flex flex-wrap justify-center items-center gap-10 ">
           {new Array(11).fill(1).map((_, i) => (
             <div key={i}>
-              {allProducts[i + 14]?.id && (
+              {allProducts?.[i + 14]?.id && (
                 <ProductCard
                   product={allProducts[i + 14]}
                   index={i + 14}

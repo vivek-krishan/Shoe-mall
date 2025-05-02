@@ -28,7 +28,7 @@ export default function ProductSlider({ products }) {
 
   useEffect(() => {
     setVisibleProducts(
-      products.slice(currentIndex, currentIndex + productsPerPage)
+      products?.slice(currentIndex, currentIndex + productsPerPage)
     );
   }, [currentIndex, products, productsPerPage]);
 
@@ -53,7 +53,7 @@ export default function ProductSlider({ products }) {
           animate={{ x: `calc(-${currentIndex * (100 / productsPerPage)}%)` }}
           transition={{ type: "spring", stiffness: 500, damping: 50 }}
         >
-          {products.map(
+          {products?.map(
             (product, index) =>
               product.id && (
                 <div
