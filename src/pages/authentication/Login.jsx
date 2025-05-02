@@ -8,7 +8,7 @@ import PopUp from "../../components/ui/PopUpWrapper";
 // import LoadingUI from "../../Genral purpose/Loading";
 // import { parseErrorMessage } from "../../Utils/ErrorMessageParser";
 import { Eye, EyeOff } from "lucide-react";
-import ButtonWrapper from "../../components/ui/Buttons";
+import { Form, Input, Button } from "@heroui/react";
 
 const LogIn = ({ startLoading, stopLoading }) => {
   // Utility variables
@@ -19,21 +19,7 @@ const LogIn = ({ startLoading, stopLoading }) => {
     setShowPassword((prev) => !prev);
   };
 
-  const [user, setUser] = useState({
-    email: "",
-    passkey: "",
-  });
-
-  const navigate = useNavigate();
-  // const Dispatch = useDispatch();
-
   // utility Functions
-  const HandelInputChange = (e) => {
-    e.preventDefault();
-    const { name, value } = e.target;
-    setUser({ ...user, [name]: value });
-  };
-
   const LogInFn = async () => {
     alertInfo("Server is not active...");
     return;
@@ -276,46 +262,62 @@ c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.
                   </div>
                 </div>
                 <div>
-                  <form novalidate="" className="mb-4">
-                    <div className="grid gap-2">
-                      <div className="grid gap-1">
-                        <label className="text-black" for="email">
-                          Email
-                        </label>
-                        <input
-                          className="mr-2.5 mb-2 h-full min-h-[44px] w-full rounded-lg border bg-zinc-950 text-black border-zinc-800 px-4 py-3 text-sm font-medium placeholder:text-zinc-400 focus:outline-0 dark:border-zinc-800 dark:bg-transparent dark:text-black dark:placeholder:text-zinc-400"
-                          id="email"
-                          placeholder="name@example.com"
-                          type="email"
-                          autocapitalize="none"
-                          autocomplete="email"
-                          autocorrect="off"
-                          name="email"
-                        />
-                        <label
-                          className="text-zinc-950 mt-2 dark:text-black"
-                          for="password"
+                  <Form
+                    className=" grid lg:grid-rows-3  grid-cols-1 gap-4   "
+                    // validationBehavior="aria"
+                    onSubmit={LogInFn}
+                  >
+                    <Input
+                      isRequired
+                      errorMessage="Please enter a valid email"
+                      label="Email"
+                      labelPlacement="outside"
+                     
+                      name="email"
+                      variant="underlined"
+                      type="email"
+                    />
+
+                    <Input
+                      isRequired
+                      label="Password"
+                      labelPlacement="outside"
+                      
+                      name="password"
+                      variant="underlined"
+                      type={showPassword ? "text" : "password"}
+                      validate={(value) => {
+                        if (value.length < 8) {
+                          return "password must be at least 8 characters long";
+                        }
+
+                        return value === "password" ? "Nice try!" : null;
+                      }}
+                      endContent={
+                        <Button
+                          aria-label="toggle password visibility"
+                          className="focus:outline-none"
+                          type="button"
+                          onClick={toggleShowPassword}
                         >
-                          Password
-                        </label>
-                        <input
-                          id="password"
-                          placeholder="Password"
-                          type="password"
-                          autocomplete="current-password"
-                          className="mr-2.5 mb-2 h-full min-h-[44px] w-full rounded-lg border bg-zinc-950 text-black border-zinc-800 px-4 py-3 text-sm font-medium placeholder:text-zinc-400 focus:outline-0 dark:border-zinc-800 dark:bg-transparent dark:text-black dark:placeholder:text-zinc-400"
-                          name="password"
-                        />
-                      </div>
-                      <button
-                        className="whitespace-nowrap ring-offset-background transition-colors drop-shadow-md hover:drop-shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-white text-zinc-950 hover:bg-gray-100 active:bg-white/80 flex w-full max-w-full mt-6 items-center justify-center rounded-lg px-4 py-4 text-base font-medium"
-                        type="submit"
-                        onClick={LogInFn}
-                      >
-                        Sign in
-                      </button>
-                    </div>
-                  </form>
+                          {showPassword ? <EyeOff /> : <Eye />}
+                        </Button>
+                      }
+                    />
+
+                    <Button
+                      type="submit"
+                      variant="shadow"
+                     
+                    >
+                      Submit
+                    </Button>
+                    {/* {submitted && (
+          <div className="text-small text-default-500">
+            You submitted: <code>{JSON.stringify(submitted)}</code>
+          </div>
+        )} */}
+                  </Form>
                   <p>
                     <button
                       className="font-medium text-black text-sm"
